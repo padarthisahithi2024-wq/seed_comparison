@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SeedCompare | Home</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header class="navbar">
+    <h2>🌱 SeedCompare</h2>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/compare">Compare Seeds</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="hero-content">
+        <span class="tag">SMART AGRICULTURE PLATFORM</span>
+        <h1>Find the Perfect Seeds for Your Farm</h1>
+        <p>
+            Compare different seeds based on soil, water,
+            growing season, price and expected yield.
+        </p>
+        <a href="/compare" class="btn">Start Comparing</a>
+    </div>
+    <div class="hero-image">🌾</div>
+</section>
+
+<section class="features">
+    <h2>Why Use SeedCompare?</h2>
+    <div class="feature-grid">
+        <div class="feature-card">
+            <h3>🌱 Seed Information</h3>
+            <p>Explore different crop seeds and their features.</p>
+        </div>
+        <div class="feature-card">
+            <h3>⚖️ Easy Comparison</h3>
+            <p>Compare seed characteristics side by side.</p>
+        </div>
+        <div class="feature-card">
+            <h3>💧 Smart Selection</h3>
+            <p>Understand soil and water requirements.</p>
+        </div>
+    </div>
+</section>
+
+<section class="seed-section">
+    <h2>Available Seeds</h2>
+
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% elif seeds %}
+        <div class="seed-grid">
+            {% for seed in seeds %}
+            <div class="seed-card">
+                <h3>{{ seed.seed_name }}</h3>
+                <p>Crop: {{ seed.crop_type }}</p>
+                <p>Soil: {{ seed.soil_type }}</p>
+                <p>Season: {{ seed.season }}</p>
+                <p>Price: ₹{{ seed.price }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No seeds have been added yet.</p>
+    {% endif %}
+</section>
+
+<footer>
+    <p>© 2026 SeedCompare | Smart Agriculture</p>
+</footer>
+
+</body>
+</html>

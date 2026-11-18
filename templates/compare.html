@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compare Seeds</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header class="navbar">
+    <h2>🌱 SeedCompare</h2>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/compare">Compare Seeds</a>
+    </nav>
+</header>
+
+<main class="page-container">
+    <h1>Compare Your Seeds</h1>
+    <p>Select at least two seeds to compare their features.</p>
+
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+
+    {% if seeds %}
+    <form action="/results" method="POST" id="compareForm">
+
+        <div class="seed-grid">
+            {% for seed in seeds %}
+            <label class="select-card">
+                <input type="checkbox"
+                       name="seed_ids"
+                       value="{{ seed.id }}">
+                <div>
+                    <h3>{{ seed.seed_name }}</h3>
+                    <p>Crop: {{ seed.crop_type }}</p>
+                    <p>Soil: {{ seed.soil_type }}</p>
+                    <p>Season: {{ seed.season }}</p>
+                    <p>Price: ₹{{ seed.price }}</p>
+                </div>
+            </label>
+            {% endfor %}
+        </div>
+
+        <p id="selectionCount">0 seeds selected</p>
+
+        <button type="submit" class="btn">
+            Compare Selected Seeds
+        </button>
+    </form>
+    {% else %}
+        <p>No seed information is available. Please check your database.</p>
+    {% endif %}
+</main>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

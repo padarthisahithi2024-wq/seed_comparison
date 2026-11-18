@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seed Comparison Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="container">
+
+        <h1>Seed Comparison Results</h1>
+        <p>Compare the selected seeds below.</p>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        {% for seed in seeds %}
+                        <th>{{ seed.seed_name }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Crop Type</td>
+                        {% for seed in seeds %}
+                        <td>{{ seed.crop_type }}</td>
+                        {% endfor %}
+                    </tr>
+
+                    <tr>
+                        <td>Soil Type</td>
+                        {% for seed in seeds %}
+                        <td>{{ seed.soil_type }}</td>
+                        {% endfor %}
+                    </tr>
+
+                    <tr>
+                        <td>Season</td>
+                        {% for seed in seeds %}
+                        <td>{{ seed.season }}</td>
+                        {% endfor %}
+                    </tr>
+
+                    <tr>
+                        <td>Water Requirement</td>
+                        {% for seed in seeds %}
+                        <td>{{ seed.water_requirement }}</td>
+                        {% endfor %}
+                    </tr>
+
+                    <tr>
+                        <td>Duration (Days)</td>
+                        {% for seed in seeds %}
+                        <td>{{ seed.duration }}</td>
+                        {% endfor %}
+                    </tr>
+
+                    <tr>
+                        <td>Expected Yield</td>
+                        {% for seed in seeds %}
+                        <td>{{ seed.expected_yield }}</td>
+                        {% endfor %}
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <a href="{{ url_for('compare') }}" class="back-button">
+            Compare More Seeds
+        </a>
+
+        <a href="{{ url_for('home') }}" class="back-button">
+            Home
+        </a>
+
+    </div>
+
+</body>
+</html>
